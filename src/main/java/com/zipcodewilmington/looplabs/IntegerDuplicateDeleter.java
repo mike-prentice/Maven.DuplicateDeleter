@@ -22,13 +22,11 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
         Integer [] newArr = Arrays.copyOf(super.array, super.array.length);
         //removeDuplicatesExactly(maxNumberOfDuplications);
         for (int i = 0; i < newArr.length; i++) {
-            int count = 0;
-            for (int j = 0; j < newArr.length; j++) {
-                count = getNumberOfOccurrences(newArr, newArr[i]);
+                int count = getNumberOfOccurrences(newArr, newArr[i]);
                 if (count >= maxNumberOfDuplications) {
                     newArr = removeValue(newArr, newArr[i]);
+                    i--;
                 }
-            }
         }
         Integer[] newArr2 = Arrays.copyOf(newArr, newArr.length);
         return newArr2;
@@ -39,13 +37,11 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
         Integer [] newArr = Arrays.copyOf(super.array, super.array.length);
         //removeDuplicatesExactly(maxNumberOfDuplications);
         for (int i = 0; i < newArr.length; i++) {
-            int count = 0;
-            for (int j = 0; j < newArr.length; j++) {
-                count = getNumberOfOccurrences(newArr, newArr[i]);
+                int count = getNumberOfOccurrences(newArr, newArr[i]);
                 if (count == exactNumberOfDuplications) {
                     newArr = removeValue(newArr, newArr[i]);
+                    i--;
                 }
-            }
         }
         Integer[] newArr2 = Arrays.copyOf(newArr, newArr.length);
         return newArr2;
