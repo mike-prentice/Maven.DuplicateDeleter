@@ -9,7 +9,7 @@ import java.util.List;
  * @ATTENTION_TO_STUDENTS You are forbidden from modifying the signature of this class.
  */
 public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
-    public static Integer[] newArr;
+    public Integer[] newArr;
 
     public IntegerDuplicateDeleter(Integer[] intArray) {
         super(intArray);
@@ -19,22 +19,36 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     @Override
     public  Integer[] removeDuplicates(int maxNumberOfDuplications) {
+        Integer [] newArr = Arrays.copyOf(super.array, super.array.length);
         //removeDuplicatesExactly(maxNumberOfDuplications);
-        return new Integer[0];
+        for (int i = 0; i < newArr.length; i++) {
+            int count = 0;
+            for (int j = 0; j < newArr.length; j++) {
+                count = getNumberOfOccurrences(newArr, newArr[i]);
+                if (count >= maxNumberOfDuplications) {
+                    newArr = removeValue(newArr, newArr[i]);
+                }
+            }
+        }
+        Integer[] newArr2 = Arrays.copyOf(newArr, newArr.length);
+        return newArr2;
     }
 
     @Override
     public  Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        int count = 0;
-       for (int i = 0; i < newArr.length; i++){
-           count = getNumberOfOccurrences(newArr, i);
-           if (count == exactNumberOfDuplications){
-               removeValue(newArr, newArr[i]);
-               i--;
-           }
-       }
-
-        return newArr;
+        Integer [] newArr = Arrays.copyOf(super.array, super.array.length);
+        //removeDuplicatesExactly(maxNumberOfDuplications);
+        for (int i = 0; i < newArr.length; i++) {
+            int count = 0;
+            for (int j = 0; j < newArr.length; j++) {
+                count = getNumberOfOccurrences(newArr, newArr[i]);
+                if (count == exactNumberOfDuplications) {
+                    newArr = removeValue(newArr, newArr[i]);
+                }
+            }
+        }
+        Integer[] newArr2 = Arrays.copyOf(newArr, newArr.length);
+        return newArr2;
     }
 
 
